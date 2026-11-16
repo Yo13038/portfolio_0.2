@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Lages Yoann</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Calques photo : meme image et meme cadrage que le background d'origine,
+       mais dans des elements zoomables (le body ne peut pas etre zoome).
+       - .bg-photo      : iie.jpg, la photo qui remplit le lettrage du hero
+       - .bg-photo-alt  : portfolio_GIF.gif, l'image animee du body.
+       Les deux partagent le meme cadrage, donc la reprise est alignee. -->
+  <div class="bg-photo" aria-hidden="true"></div>
+  <div class="bg-photo bg-photo-alt" aria-hidden="true"></div>
+
+  <!-- Ton Header d'origine (Intact) -->
+  <header class="hero-header" id="hero-header">
+      <div class="hero-letters">
+          <span class="clipped-text" id="word-yoann">YOANN</span>
+          <span class="clipped-text">LAGES</span>
+      </div>
+      <p class="enter-hint" data-i18n="hero.hint">Click to enter</p>
+  </header>
+
+  <!-- SECTION 1 : À PROPOS -->
+  <section id="about" class="container">
+      <h2 data-i18n="about.title">ABOUT ME</h2>
+      <div class="about-content">
+          <p data-i18n="about.p1">I am a Software Engineering Student at Holberton School, where I thrive in a rigorous, project-based, and peer-learning environment.</p>
+          <p data-i18n="about.p2">My journey in tech is driven by a deep fascination with the intersection of Artificial Intelligence and Cybersecurity.</p>
+          <p data-i18n="about.p3">I firmly believe that the future of intelligent systems relies heavily on their resilience against modern threats. I love building smart, automated solutions while ensuring they are built on robust, secure architectural foundations.</p>
+
+          <p data-i18n="about.p4">Current Focus: Deepening my knowledge in secure coding practices, network security, and AI models.</p>
+          <p data-i18n="about.p5">Philosophy: "Learn how to learn." I enjoy breaking complex systems down to understand how they work from the ground up (especially in Python and Linux environments).</p>
+          <p data-i18n="about.p6">Collaboration: I am always open to collaborating on open-source projects related to AI safety, automation, or ethical hacking.</p>
+      </div>
+  </section>
+
+  <!-- SECTION 2 : MES PROJETS -->
+  <section id="projects" class="container">
+      <h2 data-i18n="projects.title">PROJECTS</h2>
+      <div class="projects-grid">
+          
+          <!-- Projet 1 -->
+          <div class="project-card">
+              <div class="project-image" style="background-image: url('Talos.png');"></div>
+              <div class="project-info">
+                  <h3 data-i18n="projects.p1.title">Projet Talos</h3>
+                  <p data-i18n="projects.p1.desc">Create a keyboard emulation to reprogram various hardware without an interface or keyboard</p>
+                  <a href="https://talos.johnnattymartin.fr/" class="project-link" data-i18n="projects.link">Link to the project</a>
+              </div>
+          </div>
+
+          <!-- Projet 2 -->
+          <div class="project-card">
+              <div class="project-image" style="background-image: url('cerisier.jpg');"></div>
+              <div class="project-info">
+                  <h3 data-i18n="projects.p2.title">A Weeb Tour Of Tokyo</h3>
+                  <p data-i18n="projects.p2.desc">Create a showcase website using HTML and CSS.</p>
+                  <a href="https://github.com/Yo13038/holbertonschool-project-AWTOT" class="project-link" data-i18n="projects.link">Link to the project</a>
+              </div>
+          </div>
+
+            <!-- Projet 3 -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('inventory.png');"></div>
+                <div class="project-info">
+                    <h3 data-i18n="projects.p3.title">Hbntory</h3>
+                    <p data-i18n="projects.p3.desc">Inventory management platform online.</p>
+                    <a href="https://github.com/llacote-holberton/holberton_inventory" class="project-link" data-i18n="projects.link">Link to the project</a>
+                </div>
+            </div>                  
+          
+            <!-- Projet 4 -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('Conclave.png');"></div>
+                <div class="project-info">
+                    <h3 data-i18n="projects.p4.title">Conclave</h3>
+                    <p data-i18n="projects.p4.desc">Three conflicting readings, one actionable verdict, made by three different AI agents and reviewed by a fourth.</p>
+                    <a href="https://github.com/llacote-holberton/holberton_inventory" class="project-link" data-i18n="projects.link">Link to the project</a>
+                </div>
+            </div>
+      </div>
+  </section>
+
+  <!-- SECTION 3 : CONTACT -->
+  <section id="contact" class="container">
+      <h2 data-i18n="contact.title">Contact</h2>
+      <p data-i18n="contact.text">Something in your mind? join me to talk!</p>
+      <a href="mailto:lagesyoann@gmail.com" class="contact-button" data-i18n="contact.button">Send a email</a>
+  </section>
+
+  <!-- PIED DE PAGE -->
+  <footer>
+      <p data-i18n="footer.copy">&copy; 2026 Lages Yoann. All rights reserved.</p>
+      <!-- Liens réseaux sociaux -->
+      <div class="social-fixed">
+        <a href="https://github.com/Yo13038" target="_blank" aria-label="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/yoann-lages-dev" target="_blank" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        </a>
+        <!-- Bascule de langue : drapeau de la langue a switcher -->
+        <a href="#" id="lang-toggle" data-i18n-title="lang.toggle" aria-label="Switch to French" title="Passer en français">
+          <svg class="flag flag-fr" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+            <g transform="translate(4 0)">
+              <rect width="5.333" height="24" fill="#002395"/>
+              <rect x="5.333" width="5.334" height="24" fill="#ffffff"/>
+              <rect x="10.667" width="5.333" height="24" fill="#ED2939"/>
+            </g>
+          </svg>
+          <svg class="flag flag-uk" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+            <g transform="translate(0 6)">
+              <rect width="24" height="12" fill="#012169"/>
+              <path d="M0 0 L24 12 M24 0 L0 12" stroke="#ffffff" stroke-width="2.4" fill="none"/>
+              <path d="M0 0 L24 12 M24 0 L0 12" stroke="#C8102E" stroke-width="0.8" fill="none"/>
+              <path d="M12 0 V12 M0 6 H24" stroke="#ffffff" stroke-width="2.4" fill="none"/>
+              <path d="M12 0 V12 M0 6 H24" stroke="#C8102E" stroke-width="0.8" fill="none"/>
+            </g>
+          </svg>
+        </a>
+      </div>
+  </footer>
+
+  <script>
+    /* ------------------------------------------------------------------
+       Bascule EN / FR
+       - le site s'ouvre en anglais
+       - la langue est memorisee (localStorage) et ne change qu'au clic
+       ------------------------------------------------------------------ */
+    (function () {
+      'use strict';
+
+      var doc = document.documentElement;
+      var STORAGE_KEY = 'portfolio_lang';
+
+      var I18N = {
+        en: {
+          'hero.hint': 'Click to enter',
+          'about.title': 'ABOUT ME',
+          'about.p1': 'I am a Software Engineering Student at Holberton School, where I thrive in a rigorous, project-based, and peer-learning environment.',
+          'about.p2': 'My journey in tech is driven by a deep fascination with the intersection of Artificial Intelligence and Cybersecurity.',
+          'about.p3': 'I firmly believe that the future of intelligent systems relies heavily on their resilience against modern threats. I love building smart, automated solutions while ensuring they are built on robust, secure architectural foundations.',
+          'about.p4': 'Current Focus: Deepening my knowledge in secure coding practices, network security, and AI models.',
+          'about.p5': 'Philosophy: "Learn how to learn." I enjoy breaking complex systems down to understand how they work from the ground up (especially in Python and Linux environments).',
+          'about.p6': 'Collaboration: I am always open to collaborating on open-source projects related to AI safety, automation, or ethical hacking.',
+          'projects.title': 'PROJECTS',
+          'projects.p1.title': 'Projet Talos',
+          'projects.p1.desc': 'Create a keyboard emulation to reprogram various hardware without an interface or keyboard',
+          'projects.p2.title': 'A Weeb Tour Of Tokyo',
+          'projects.p2.desc': 'Create a showcase website using HTML and CSS.',
+          'projects.p3.title': 'Hbntory',
+          'projects.p3.desc': 'Inventory management platform online.',
+          'projects.p4.title': 'Conclave',
+          'projects.p4.desc': 'Three conflicting readings, one actionable verdict, made by three different AI agents and reviewed by a fourth.',
+          'projects.link': 'Link to the project',
+          'contact.title': 'Contact',
+          'contact.text': 'Something in your mind? join me to talk!',
+          'contact.button': 'Send a email',
+          'footer.copy': '© 2026 Lages Yoann. All rights reserved.',
+          'lang.toggle': 'Switch to French'
+        },
+        fr: {
+          'hero.hint': 'Cliquez pour entrer',
+          'about.title': 'À PROPOS',
+          'about.p1': 'Je suis étudiant en génie logiciel à la Holberton School, où j\'évolue dans un environnement exigeant, fondé sur des projets et sur l\'apprentissage entre pairs.',
+          'about.p2': 'Mon parcours dans la tech est guidé par une fascination profonde pour l\'intersection entre Intelligence Artificielle et Cybersécurité.',
+          'about.p3': 'Je suis convaincu que l\'avenir des systèmes intelligents repose largement sur leur résilience face aux menaces modernes. J\'aime concevoir des solutions intelligentes et automatisées, en veillant à les bâtir sur des fondations architecturales robustes et sécurisées.',
+          'about.p4': 'Focus actuel : approfondir mes connaissances en développement sécurisé, en sécurité réseau et en modèles d\'IA.',
+          'about.p5': 'Philosophie : « Apprendre à apprendre. » J\'aime décortiquer des systèmes complexes pour comprendre comment ils fonctionnent depuis les fondations (surtout dans des environnements Python et Linux).',
+          'about.p6': 'Collaboration : je suis toujours ouvert à collaborer sur des projets open source liés à la sécurité de l\'IA, à l\'automatisation ou au hacking éthique.',
+          'projects.title': 'PROJETS',
+          'projects.p1.title': 'Projet Talos',
+          'projects.p1.desc': 'Créer une émulation clavier pour reprogrammer différents matériels sans interface ni clavier',
+          'projects.p2.title': 'A Weeb Tour Of Tokyo',
+          'projects.p2.desc': 'Créer un site vitrine en HTML et CSS.',
+          'projects.p3.title': 'Hbntory',
+          'projects.p3.desc': 'Plateforme en ligne de gestion de stock.',
+          'projects.p4.title': 'Conclave',
+          'projects.p4.desc': 'Trois lectures contradictoires, un verdict actionnable, produits par trois agents IA différents et revus par un quatrième.',
+          'projects.link': 'Voir le projet',
+          'contact.title': 'Contact',
+          'contact.text': 'Quelque chose en tête ? Parlons-en !',
+          'contact.button': 'Envoyer un email',
+          'footer.copy': '© 2026 Lages Yoann. Tous droits réservés.',
+          'lang.toggle': 'Switch to English'
+        }
+      };
+
+      /* Applique une langue : textes, attribut lang, titre, aria-label */
+      function applyLang(lang) {
+        var dict = I18N[lang] || I18N.en;
+
+        doc.setAttribute('lang', lang);
+
+        document.querySelectorAll('[data-i18n]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n');
+          if (dict[key] !== undefined) el.textContent = dict[key];
+        });
+
+        document.querySelectorAll('[data-i18n-title]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n-title');
+          if (dict[key] !== undefined) {
+            el.setAttribute('title', dict[key]);
+            el.setAttribute('aria-label', dict[key]);
+          }
+        });
+      }
+
+      /* Langue memorisee, sinon anglais */
+      var saved = null;
+      try { saved = window.localStorage.getItem(STORAGE_KEY); } catch (e) { /* mode prive */ }
+      applyLang(saved === 'fr' ? 'fr' : 'en');
+
+      /* Bascule au clic */
+      var toggle = document.getElementById('lang-toggle');
+      if (toggle) {
+        toggle.addEventListener('click', function (e) {
+          e.preventDefault();
+          var next = doc.getAttribute('lang') === 'fr' ? 'en' : 'fr';
+          applyLang(next);
+          try { window.localStorage.setItem(STORAGE_KEY, next); } catch (err) { /* ignore */ }
+        });
+      }
+    })();
+  </script>
+
+  <script>
+    /* Zoom avant au travers de la lettre "A" de "YOANN" vers le body.
+       Le hero et le calque photo sont zoomes sur le MEME point et avec le
+       MEME facteur : la photo reste donc en registre pendant tout le
+       zoom, et le fondu hero -> body est invisible. */
+    (function () {
+      'use strict';
+
+      var doc = document.documentElement;
+      var body = document.body;
+      var hero = document.getElementById('hero-header');
+      var word = document.getElementById('word-yoann');
+
+      var ZOOM = 4;          // facteur de zoom
+      var ZOOM_MS = 1400;    // duree du zoom
+      var state = 'landing';
+
+      /* Centre du caractere "A" (3e lettre de "YOANN") en coordonnees ecran */
+      function centerOfA() {
+        try {
+          var node = word.firstChild;
+          var index = node.nodeValue.indexOf('A');
+          var range = document.createRange();
+          range.setStart(node, index);
+          range.setEnd(node, index + 1);
+          var rect = range.getBoundingClientRect();
+          if (rect.width && rect.height) {
+            return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
+          }
+        } catch (e) { /* repli ci-dessous */ }
+        return { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+      }
+
+      function enter() {
+        if (state !== 'landing') return;
+        state = 'zooming';
+
+        var c = centerOfA();
+        doc.style.setProperty('--ox', c.x + 'px');
+        doc.style.setProperty('--oy', c.y + 'px');
+        doc.style.setProperty('--s', ZOOM);
+
+        body.classList.add('zooming');
+        doc.classList.remove('locked');
+
+        window.setTimeout(function () {
+          body.classList.remove('zooming');
+          body.classList.add('arrived');
+          state = 'arrived';
+        }, ZOOM_MS);
+      }
+
+      /* Initialisation : on garde le scroll bloque tant qu'on est sur
+         l'accueil, et le clic entre sur le body. */
+      doc.classList.add('locked');
+      hero.addEventListener('click', enter);
+      hero.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); enter(); }
+      });
+    })();
+  </script>
+
+</body>
+</html>

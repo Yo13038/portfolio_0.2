@@ -1,0 +1,13 @@
+# Fichiers systeme Windows
+desktop.ini
+Thumbs.db
+desktop.ini
+
+# Logs du serveur local (artifacts de developpement)
+server.log
+server.err
+
+# Fichiers temporaires
+*.tmp
+*.bak
+.DS_Store

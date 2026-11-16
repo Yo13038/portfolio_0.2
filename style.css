@@ -1,0 +1,409 @@
+/* ==========================================================================
+   1. HERO HEADER (Découpe de texte moderne & stable)
+   ========================================================================== */
+
+/* Calque photo : meme image et meme cadrage que le background d'origine,
+   mais dans un element zoomable (le body ne peut pas etre zoome). */
+.bg-photo {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image: url('iie.jpg');
+  background-size: 70%;
+  background-position: 50% 35%;
+  background-repeat: no-repeat;
+  pointer-events: none;
+
+  /* Point de zoom : centre de la lettre "A" (defini par le JS) */
+  transform-origin: var(--ox, 50%) var(--oy, 50%);
+  transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Image animee du body (portfolio_GIF.gif), posee par-dessus l'ancienne.
+   Les deux partagent le meme cadrage : la reprise est parfaitement alignee.
+   Elle reste invisible pendant le zoom : un GIF agrifie 4x serait trop
+   lourd a rasteriser, et la fumee n'a besoin d'animer qu'une fois le zoom
+   termine. */
+.bg-photo-alt {
+  background-image: url('portfolio_GIF.gif');
+  opacity: 0;
+  visibility: hidden;
+}
+
+.hero-header {
+  height: 100vh; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: #000000;
+
+  /* Le hero est en surimpression pour pouvoir zoomer sur la lettre "A" */
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+
+  transform-origin: var(--ox, 50%) var(--oy, 50%);
+  transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.45s ease 0.85s;
+}
+
+/* Pendant le zoom : le hero et la photo grossissent vers la lettre "A" */
+body.zooming .hero-header,
+body.zooming .bg-photo,
+body.zooming .bg-photo-alt {
+  transform: scale(var(--s, 5));
+}
+
+/* Le hero s'efface a la fin du zoom pour laisser voir la photo du body */
+body.zooming .hero-header {
+  opacity: 0;
+}
+
+/* Une fois arrive sur le body : le hero est retire, la photo revient a son
+   cadrage normal et l'image animee prend le relais (fondu aligne). */
+body.arrived .hero-header {
+  transform: scale(var(--s, 5));
+  opacity: 0;
+  visibility: hidden;
+}
+
+body.arrived .bg-photo {
+  opacity: 0;
+  transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.8s ease 0.15s;
+}
+
+body.arrived .bg-photo-alt {
+  opacity: 1;
+  visibility: visible;
+  transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.8s ease 0.15s,
+              visibility 0s;
+}
+
+body.arrived .bg-photo,
+body.arrived .bg-photo-alt {
+  transform: scale(1);
+}
+
+/* Le contenu du body apparait en meme temps que la photo revient en place.
+   Pendant le zoom il est masque, pour ne pas apparaitre sous le hero. */
+body.zooming .container,
+body.zooming footer {
+  opacity: 0;
+}
+
+body.arrived .container,
+body.arrived footer > p {
+  animation: contentIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+body.arrived #about    { animation-delay: 0.35s; }
+body.arrived #projects { animation-delay: 0.50s; }
+body.arrived #contact  { animation-delay: 0.65s; }
+body.arrived footer > p { animation-delay: 0.80s; }
+
+/* Le zoom se joue toujours a la meme vitesse, meme si le navigateur
+   demande de limiter les animations. */
+
+@keyframes contentIn {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Indication de clic pour entrer */
+.enter-hint {
+  position: absolute;
+  bottom: 44px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: 0.8rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #14e036;
+  opacity: 0.75;
+  animation: hintPulse 2.4s ease-in-out infinite;
+  transition: opacity 0.4s ease;
+}
+
+body.zooming .enter-hint {
+  animation: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+@keyframes hintPulse {
+  0%, 100% { opacity: 0.75; }
+  50%      { opacity: 0.3; }
+}
+
+/* Les liens sociaux n'apparaissent qu'une fois sur le body */
+.locked .social-fixed,
+body.zooming .social-fixed {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+body.arrived .social-fixed {
+  opacity: 1;
+  transition: opacity 0.9s ease 0.9s;
+}
+
+/* Scroll bloque tant qu'on n'a pas clique pour entrer */
+.locked {
+  overflow: hidden;
+}
+
+/* Conteneur du texte d'en-tête.
+   Le fond photo est porte par ce bloc (taille = fenetre) et non par les
+   lettres : le cadrage est ainsi rigoureusement identique a celui du
+   calque .bg-photo, et les deux restent en registre pendant le zoom. */
+.hero-letters {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  padding: 70px 0;
+
+  /* Charge l'image directement à l'intérieur de la typographie */
+  background-image: url('iie.jpg');
+  background-size: 70%;
+  background-position: 50% 35%;
+  background-repeat: no-repeat;
+
+  /* Découpe l'image sur la forme des lettres et rend le texte transparent */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Style appliqué aux deux mots */
+.clipped-text {
+  font-family: 'Montserrat', 'Arial Black', sans-serif;
+  font-size: 15vw; 
+  font-weight: 900;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 0.85; 
+  letter-spacing: -2px; 
+  width: 100%;
+  margin: 0;
+  color: transparent;
+}
+
+/* ==========================================================================
+   2. STYLES GÉNÉRAUX & SECTIONS
+   ========================================================================== */
+body {
+  margin: 0;
+  padding: 0;
+  
+  /* Arrière-plan global : la photo est dans le calque .bg-photo (zoomable) */
+  background-color: #000000;
+  
+  color: #14e036;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  position: relative;
+  z-index: 1;
+}
+
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Style de la section À Propos */
+.about-content p {
+  font-size: 1.2rem;
+  color: #1fb45d;
+  text-shadow: 
+    -1px -1px 0 #111,
+     1px -1px 0 #111,
+    -1px  1px 0 #111,
+     1px  1px 0 #111,
+     0px  0px 10px rgba(0, 255, 136, 0.6);
+  max-width: 800px;
+  margin-bottom: 20px;
+}
+
+.about-content strong {
+  color: #fff; 
+  text-shadow: 
+    -1px -1px 0 #111,
+     1px -1px 0 #111,
+    -1px  1px 0 #111,
+     1px  1px 0 #111,
+     0px  0px 10px rgba(3, 245, 193, 0.8);
+}
+
+/* Style de la Grille des Projets */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.project-card {
+  background-color: #161616;
+  border: 1px solid #222;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.05);
+}
+
+.project-image {
+  height: 220px;
+  background-color: #222;
+  background-size: cover;
+  background-position: center;
+}
+
+.project-info {
+  padding: 25px;
+}
+
+.project-info h3 {
+  margin-top: 0;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.project-info p {
+  color: #0bb925;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+.project-link {
+  color: #0beee3;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+  border-bottom: 2px solid #08edf5;
+  padding-bottom: 3px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.project-link:hover {
+  color: #08edf5;
+  border-color: #aaa;
+}
+
+/* Style de la section Contact */
+#contact {
+  text-align: center;
+}
+
+#contact p {
+  color: #08edf5;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  text-shadow: 
+    -1px -1px 0 #111,
+     1px -1px 0 #111,
+    -1px  1px 0 #111,
+     1px  1px 0 #111,
+     0px  0px 10px rgba(0, 255, 136, 0.8);
+}
+
+.contact-button {
+  display: inline-block;
+  background-color: #0af386;
+  color: #111;
+  padding: 15px 35px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 50px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.contact-button:hover {
+  background-color: #ddd;
+  transform: scale(1.03);
+}
+
+/* Pied de page */
+footer {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 0.9rem;
+  color: #ffffff;
+  position: relative;
+  z-index: 1;
+}
+
+/* Positionnement fixe en bas à gauche */
+.social-fixed {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  gap: 15px;
+  z-index: 1000;
+}
+
+.social-fixed a {
+  color: #00ff88;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background-color: rgba(17, 17, 17, 0.8);
+  border: 1px solid #00ff88;
+  border-radius: 8px;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.social-fixed a:hover {
+  color: #fff;
+  background-color: #00ff88;
+  box-shadow: 0 0 12px rgba(0, 255, 136, 0.6);
+  transform: translateY(-3px);
+}
+
+/* ==========================================================================
+   Bascule de langue (drapeau FR / Union Jack)
+   L'icone affiche le drapeau de la langue vers laquelle on peut switcher :
+   le drapeau FR tant que le site est en anglais, l'Union Jack en français.
+   ========================================================================== */
+#lang-toggle .flag {
+  width: 24px;
+  height: 24px;
+  display: block;
+  border-radius: 2px;
+}
+
+#lang-toggle .flag-uk {
+  display: none;
+}
+
+html[lang="fr"] #lang-toggle .flag-fr {
+  display: none;
+}
+
+html[lang="fr"] #lang-toggle .flag-uk {
+  display: block;
+}
