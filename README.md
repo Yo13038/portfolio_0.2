@@ -45,7 +45,7 @@ portfolio/
 | Project | Description | Link |
 |---------|-------------|------|
 | **Projet Talos** | Keyboard emulation to reprogram hardware without interface/keyboard | [View](https://talos.johnnattymartin.fr/) |
-| **A Weeb Tour Of Tokyo** | Showcase website built with HTML & CSS | [GitHub](https://github.com/Yo13038/holbertonschool-project-AWTOT) |
+| **A Weeb Tour Of Tokyo** | Showcase website built with HTML & CSS | [Live Demo](https://yo13038.github.io/holbertonschool-project-AWTOT/) |
 | **Hbntory** | Online inventory management platform | [GitHub](https://github.com/llacote-holberton/holberton_inventory) |
 | **Conclave** | Three AI agents produce conflicting readings, reviewed by a fourth | [GitHub](https://github.com/llacote-holberton/holberton_inventory) |
 
