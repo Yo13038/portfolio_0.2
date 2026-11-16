@@ -8,7 +8,7 @@
   position: fixed;
   inset: 0;
   z-index: 0;
-  background-image: url('iie.jpg');
+  background-image: url('portfolio_body.jpg');
   background-size: 70%;
   background-position: 50% 35%;
   background-repeat: no-repeat;
@@ -171,7 +171,7 @@ body.arrived .social-fixed {
   padding: 70px 0;
 
   /* Charge l'image directement à l'intérieur de la typographie */
-  background-image: url('iie.jpg');
+  background-image: url('portfolio_body.jpg');
   background-size: 70%;
   background-position: 50% 35%;
   background-repeat: no-repeat;
